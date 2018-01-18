@@ -1,8 +1,8 @@
 DIST_SUBDIRS = secp256k1 univalue
 
 AM_LDFLAGS = $(PTHREAD_CFLAGS) $(LIBTOOL_LDFLAGS) $(HARDENED_LDFLAGS)
-AM_CXXFLAGS = $(HARDENED_CXXFLAGS)
-AM_CPPFLAGS = $(HARDENED_CPPFLAGS)
+AM_CXXFLAGS = -fPIC $(HARDENED_CXXFLAGS)
+AM_CPPFLAGS = -fPIC $(HARDENED_CPPFLAGS)
 
 if EMBEDDED_LEVELDB
 LEVELDB_CPPFLAGS += -I$(srcdir)/leveldb/include
@@ -278,8 +278,8 @@ crypto_librevolvercoin_crypto_a_SOURCES = \
   crypto/sha512.h
 
 # common: shared between revolvercoind, and revolvercoin-qt and non-server tools
-librevolvercoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(REVOLVERCOIN_INCLUDES)
-librevolvercoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+librevolvercoin_common_a_CPPFLAGS = -fPIC $(AM_CPPFLAGS) $(REVOLVERCOIN_INCLUDES)
+librevolvercoin_common_a_CXXFLAGS = -fPIC $(AM_CXXFLAGS) $(PIE_FLAGS)
 librevolvercoin_common_a_SOURCES = \
   amount.cpp \
   arith_uint256.cpp \
